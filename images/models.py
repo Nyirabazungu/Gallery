@@ -1,28 +1,49 @@
 from django.db import models
 
 # Create your models here.
-class Photographer(models.Model):
-    first_name = models.CharField(max_length =30)
-    last_name = models.CharField(max_length =30)
-    email = models.EmailField()
+
+class Category(models.Model):
+    category = models.CharField(max_length =30)
+    
 
     def __str__(self):
-        return self.first_name
+        return self.category
 
     class Meta:
-        ordering = ['first_name']
+        ordering = ['category']
 
+class Location(models.Model):
+    country = models.CharField(max_length =30)
+ 
 
-class categories(models.Model):
-    name = models.CharField(max_length =30)
 
     def __str__(self):
-        return self.name
+        return self.country  
 
-
-class Photo(models.Model):
+class Images(models.Model):
     title = models.CharField(max_length =60)
-    post = models.TextField()
-    photographer = models.ForeignKey(Photographer) 
-    categories = models.ManyToManyField(categories)
-    pub_date = models.DateTimeField(auto_now_add=True)     
+    description= models.TextField()
+    category = models.ForeignKey(Category)
+    location = models.ForeignKey(Location)
+
+    def __str__(self):
+        return self.category
+
+    class Meta:
+        ordering = ['category']     
+
+    def save_images(self):
+         self.save()  
+         
+    def delete_images(self):
+         self.save()  
+
+    def display_images(self):
+         self.save()
+
+    def update_images(self):
+         self.save()     
+
+
+ 
+       
