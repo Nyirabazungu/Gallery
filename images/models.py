@@ -4,6 +4,7 @@ from django.db import models
 
 class Category(models.Model):
     category = models.CharField(max_length =30)
+ 
     
 
     def __str__(self):
@@ -25,6 +26,7 @@ class Images(models.Model):
     description= models.TextField()
     category = models.ForeignKey(Category)
     location = models.ForeignKey(Location)
+    images_images = models.ImageField(upload_to = 'images/') 
 
     def __str__(self):
         return self.category
@@ -44,6 +46,9 @@ class Images(models.Model):
     def update_images(self):
          self.save()     
 
-
+@classmethod
+def search_by_title(cls,search_term):
+        images = cls.objects.filter(title__icontains=search_term)
+        return images
  
        
