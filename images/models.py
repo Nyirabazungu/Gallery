@@ -14,6 +14,19 @@ class Category(models.Model):
     # class Meta:
     #     ordering = ['category']
 
+
+    def save_images(self):
+         self.save()  
+         
+    def delete_images(self):
+         self.save()  
+
+    def display_images(self):
+         self.save()
+
+    def update_images(self):
+         self.save()    
+
     
 
 class Location(models.Model):
@@ -23,6 +36,19 @@ class Location(models.Model):
 
     def __str__(self):
         return self.country  
+
+     
+    def save_images(self):
+         self.save()  
+         
+    def delete_images(self):
+         self.save()  
+
+    def display_images(self):
+         self.save()
+
+    def update_images(self):
+         self.save()       
 
 class Image(models.Model):
     title = models.CharField(max_length =70)
