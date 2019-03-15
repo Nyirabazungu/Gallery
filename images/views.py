@@ -1,8 +1,10 @@
 from django.shortcuts import render
+from . models import Image
 
 # Create your views here.
 def welcome(request):
-    return render(request, 'welcome.html')
+    pictures = Image.objects.all()
+    return render(request, 'welcome.html',{"pictures":pictures})
 
 def search_results(request):
 
@@ -23,4 +25,10 @@ def category(request,category_id):
         category = Category.objects.get(id = category_id)
     except DoesNotExist:
         raise Http404()
-    return render(request,"all-news/category.html", {"category":category})       
+    return render(request,"all-news/category.html", {"category":category}) 
+
+
+
+
+
+
