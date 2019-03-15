@@ -3,15 +3,18 @@ from django.db import models
 # Create your models here.
 
 class Category(models.Model):
-    category = models.CharField(max_length =30)
+    category = models.CharField(max_length =40)
+   
  
     
 
     def __str__(self):
         return self.category
 
-    class Meta:
-        ordering = ['category']
+    # class Meta:
+    #     ordering = ['category']
+
+    
 
 class Location(models.Model):
     country = models.CharField(max_length =30)
@@ -21,18 +24,18 @@ class Location(models.Model):
     def __str__(self):
         return self.country  
 
-class Images(models.Model):
-    title = models.CharField(max_length =60)
+class Image(models.Model):
+    title = models.CharField(max_length =70)
     description= models.TextField()
     category = models.ForeignKey(Category)
     location = models.ForeignKey(Location)
-    images_images = models.ImageField(upload_to = 'images/') 
+    images= models.ImageField(upload_to = 'images/')
+   
 
     def __str__(self):
-        return self.category
+        return self.title
 
-    class Meta:
-        ordering = ['category']     
+      
 
     def save_images(self):
          self.save()  
@@ -46,9 +49,21 @@ class Images(models.Model):
     def update_images(self):
          self.save()     
 
-@classmethod
-def search_by_title(cls,search_term):
-        images = cls.objects.filter(title__icontains=search_term)
+    @classmethod
+    def search_by_category(cls,search_term):
+        images = cls.objects.filter(category__category__icontains=search_term)
         return images
  
        
+
+
+
+    
+
+
+
+
+
+
+
+    
